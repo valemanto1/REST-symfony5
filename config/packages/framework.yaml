@@ -15,3 +15,11 @@ framework:
     #fragments: true
     php_errors:
         log: true
+        
+    http_client:
+        scoped_clients:
+            footballApi:
+                base_uri: 'https://api.football-data.org/v2'
+                headers:
+                    Accept: 'application/json'
+                    X-Auth-Token: '%env(FOOTBALL_API_TOKEN)%'
