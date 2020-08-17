@@ -2,7 +2,7 @@
 
 Un ejemplo de un PHP REST API utilizando el framework Symfony 5.0
 
-Para poder correrlo primero ejecutamos:
+Para poder correrlo primero ejecutamos el siguiente para instalar las dependencias a traves de [composer](https://getcomposer.org/download/):
 
 ```sh
 $ composer install
@@ -16,11 +16,17 @@ FOOTBALL_API_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 ```
 El API Token se puede obtener de [https://www.football-data.org/](https://www.football-data.org/).
 
-Creamos un base de datos y por ultimo corremos los siguiente comandos para poder crear las tablas:
+Creamos una base de datos y por último corremos los siguientes comandos para poder crear las tablas:
 
 ```sh
 $ bin/console make:migration
 $ bin/console doctrine:migrations:migrate
+```
+
+Si tenemos [Symfony](https://symfony.com/download) instalado podemos utlizar el siguiente comando para levantar la aplicacion.
+
+```sh
+$ symfony server:start
 ```
 
 Pueden ver mas detalles aquí:
