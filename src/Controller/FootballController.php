@@ -29,7 +29,7 @@ class FootballController extends AbstractController
         if($em->getRepository(League::class)->findOneBy(['code' => $leagueCode])){
             return new JsonResponse(['message' => 'League already imported'], Response::HTTP_CONFLICT);
         }
-        
+
         /* Get competition */
         try {
             $response = $this->getData('/competitions/'. $leagueCode);
@@ -103,7 +103,7 @@ class FootballController extends AbstractController
 
         $response = $this->client->request('GET', 'https://api.football-data.org/v2' . $url);
         
-        if(200 !== $response->getStatusCode()){
+        if(200 !== $code=$response->getStatusCode()){
             switch ($response->getStatusCode()){
                 case 404:
                     $message = "Not Found";
@@ -112,9 +112,9 @@ class FootballController extends AbstractController
                     $message = "Server Error";
                     break;
                 default:
-                    $message = "Other error";    
+                    $message = $response->toArray(false)['message'];
             }
-            throw new \Exception($message,$response->getStatusCode());   
+            throw new \Exception($message,$code);   
         }
         return $response;
     }
